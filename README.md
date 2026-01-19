@@ -97,8 +97,7 @@ Cada archivo presentaba **ligeras diferencias en estructura y formato**.
  │   ┣ london.pbix
  │   ┣ milan.pbix
  │   ┣ sydney.pbix
- │   ┣ tokyo.pbix
- │   ┗ all-states-history.csv
+ │   ┗ tokyo.pbix
  ┣ 📁 clean_csv/
  │   ┣ clean-Madrid.csv
  │   ┣ clean-Tokyo.csv
