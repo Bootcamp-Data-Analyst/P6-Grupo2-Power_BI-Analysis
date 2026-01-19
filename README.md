@@ -82,6 +82,15 @@ Cada archivo presentaba **ligeras diferencias en estructura y formato**.
 
 ```
 📦 P6-GRUPO2-POWER_BI-ANALYSIS/
+ ┣ 📁 all-cities-csv/
+ │   ┣ 📁 all-csv
+ │   │   ┣ clean-Madrid.pbix
+ │   │   ┣ clean-Tokyo.pbix
+ │   │   ┣ clean-london.pbix
+ │   │   ┣ clean-milan.pbix
+ │   │   ┣ clean-ny.pbix
+ │   │   ┗ clean-sydney.pbix
+ │   ┗ all-cities.csv
  ┣ 📁 cities/
  │   ┣ New_York.pbix
  │   ┣ clean-Madrid.pbix.pbix
