@@ -14,6 +14,15 @@ El resultado final es un conjunto de **dashboards individuales por ciudad** y un
 
 ---
 
+## 👩‍💻 Contribuyentes
+
+  | Nombre           | GitHub | LinkedIn |
+|------------------|--------|----------|
+| Jaime Amuedo     | [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JaimeAmuedoJAH) | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jaime-amuedo-hidalgo-a432bb354/) |
+| Ruben Camacho    | [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/RubenCG1997) | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/ruben-camacho-gomez) |
+| Pablo Rodríguez  | [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/PabloRodMu) | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/pablo-rodríguez-muñoz-357890185) |
+| Andrés Pérez     | [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/andresdatalyst) | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/andresproviraprogramador/) |
+
 ## 👥 Equipo de Trabajo
 
 - **Rubén** — Data Analyst  
@@ -61,6 +70,38 @@ Datos en formato **CSV**, uno por cada ciudad, con información pública de Airb
 Cada archivo presentaba **ligeras diferencias en estructura y formato**.
 
 ---
+
+## 🤖 Tecnologías y Librerías
+
+![Power Bi](https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+![Microsoft Excel](https://img.shields.io/badge/Microsoft_Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+
+## 📁 Estructura del Repositorio
+
+```
+📦 P6-GRUPO2-POWER_BI-ANALYSIS/
+ ┣ 📁 cities/
+ │   ┣ New_York.pbix
+ │   ┣ clean-Madrid.pbix.pbix
+ │   ┣ london.pbix
+ │   ┣ milan.pbix
+ │   ┣ sydney.pbix
+ │   ┣ tokyo.pbix
+ │   ┗ all-states-history.csv
+ ┣ 📁 clean_csv/
+ │   ┣ clean-Madrid.csv
+ │   ┣ clean-Tokyo.csv
+ │   ┣ clean-london.csv
+ │   ┣ clean-sydney.csv
+ │   ┣ clean-Milan.csv
+ │   ┗ clean_NY.csv
+ ┣ 📁 plantilla_dashboard/
+ │   ┗ platilla_dashboard.pbix 
+ ┣ 📄 .gitignore
+ ┗ 📄 README.md
+```
 
 ## 🔄 Proceso ETL (Extract, Transform, Load)
 
