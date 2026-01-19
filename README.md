@@ -111,17 +111,20 @@ Cada archivo presentaba **ligeras diferencias en estructura y formato**.
 ### 🔹 Transform
 Limpieza y estandarización de columnas:
 
-| Columna                | Transformación                                   |
-|------------------------|--------------------------------------------------|
-| `id`                   | Eliminación de nulos y conversión a numérico     |
-| `host_id`              | Eliminación de nulos y conversión a numérico     |
-| `latitude / longitude` | Conversión a decimal y ajuste regional           |
-| `price`                | Conversión de moneda a USD                       |
-| `minimum_nights`       | Eliminada                                        |
-| `last_review`          | Eliminada                                        |
-| `reviews_per_month`    | Eliminada                                        |
-| `neighborhood_group`   | Usada solo cuando existe                         |
-| `city`                 | Columna añadida manualmente                      |
+
+| Columna                | Transformación                                             |
+|------------------------|------------------------------------------------------------|
+| `id`                   | Eliminación de nulos y conversión a numérico               |
+| `host_id`              | Eliminación de nulos y conversión a numérico               |
+| `latitude / longitude` | Conversión a decimal y ajuste regional                     |
+| `price`                | Limpieza de símbolo y normalización de formato regional    |
+| `usd`                  | Conversión de `price` (moneda local) a dólares estadounidenses |
+| `minimum_nights`       | Eliminada                                                  |
+| `last_review`          | Eliminada                                                  |
+| `reviews_per_month`    | Eliminada                                                  |
+| `neighborhood_group`   | Usada solo cuando existe                                   |
+| `city`                 | Columna añadida manualmente                                |
+
 
 Configuración regional ajustada para correcta lectura de decimales y mapas.
 
@@ -151,13 +154,6 @@ Esto permitió consolidar los datasets posteriormente.
 
 ---
 
-## 🧱 Modelado y Columnas Calculadas
-
-Se añadieron columnas calculadas para análisis de negocio:
-
-- **Tipo de Host** (Profesional vs Particular)
-
----
 
 ## 📊 Diseño de Dashboards por Ciudad
 
@@ -184,9 +180,16 @@ Plantilla común ubicada en la rama:
 - Distribución por *room type*  
 - Relación con precios y disponibilidad  
 
-#### 4️⃣ Tipo de Host
+#### 4️⃣ Demanda y Ocupación
+- Disponibilidad media  
+- Media de *reviews*  
+- Precio medio por tipo de habitación  
+- Gráfico circular de disponibilidad de alojamientos  
+
+#### 5️⃣ Tipo de Host
 - Distribución: Profesional vs Particular  
 - Precio mediano por tipo de host  
+
 
 Cada país utiliza una **paleta de colores propia**, manteniendo el mismo layout.
 
@@ -194,21 +197,13 @@ Cada país utiliza una **paleta de colores propia**, manteniendo el mismo layout
 
 ## 🗺️ Mapas y Visualización Geográfica
 
-Columna adicional para mapas de calor:
-
-- `ubicacion_mapa`
-
 Permite:
 
 - Mapas de calor por zonas  
 - Comparación visual de precios y concentración  
 
-Herramientas utilizadas:
-
-- **Azure Maps**
-- **Visual Maps**
-
-Con especial atención a la configuración regional de coordenadas.
+Además, se ha utilizado un **mapa de forma (shape map)** en el que, para cada ciudad, se descargó su respectivo archivo **JSON/GeoJSON** y se aplicó un **color de relleno condicional** para distinguir tres rangos de precio:  
+Para el resto de visualizaciones geográficas se utilizaron **mapas estándar basados en latitud y longitud**, representando la ubicación exacta de los alojamientos y su densidad.
 
 ---
 
@@ -231,7 +226,10 @@ Ciudades incluidas:
 
 - Londres  
 - Madrid  
-- Tokio  
+- Tokio
+- Sydney
+- Milan
+- New York
 
 ---
 
@@ -247,24 +245,12 @@ Medidas creadas:
 
 Segmentación por:
 
-- Ciudad  
 - Barrio  
 - Tipo de host  
 - Tipo de habitación  
 
 ---
 
-## 🧠 Análisis Adicional
-
-Caso Tokio:
-
-- Estudio de correlación entre:
-  - Precio  
-  - Número de reseñas  
-
-Objetivo: evaluar relación entre **demanda y precio**.
-
----
 
 ## 🚀 Entregables
 
@@ -287,109 +273,4 @@ Resultado: herramienta útil para la toma de decisiones en el sector turístico 
 
 ---
 
-# 🎤 Storytelling / Data Driven para Presentación
 
-## ❓ Contexto y Objetivo — Problema
-
-Entender cómo funciona el mercado de Airbnb en distintas ciudades y qué diferencias existen en:
-
-- Precios  
-- Barrios  
-- Tipos de alojamiento  
-- Perfil de anfitriones  
-
----
-
-## 🎯 Importancia
-
-- Ayuda a inversores  
-- Ayuda a anfitriones  
-- Ayuda a plataformas  
-
----
-
-## 🧠 Decisiones Iniciales
-
-### 🔹 Análisis por ciudades
-**Decisión:** analizar cada ciudad por separado  
-**Motivo:** limpieza individual antes de comparar  
-
-### 🔹 Conversión de moneda
-**Decisión:** convertir precios a USD  
-**Motivo:** comparaciones válidas entre ciudades  
-
-### 🔹 Plantilla común
-**Decisión:** mismo diseño para todas las ciudades  
-**Motivo:**
-- Comparación visual  
-- Menos sesgos  
-- Escalabilidad  
-
----
-
-## 🧹 Limpieza y Modelado
-
-### Problemas
-- Valores nulos  
-- Formatos decimales distintos  
-- Columnas irrelevantes  
-
-### Soluciones
-- Reglas de limpieza comunes  
-- Validación de tipos  
-- Columnas calculadas  
-
----
-
-## 📊 Preguntas de Negocio por Página
-
-| Página   | Pregunta                         |
-|--------|----------------------------------|
-| Overview | ¿Cómo es el mercado general?     |
-| Barrios  | ¿Dónde se concentra la oferta?   |
-| Vivienda | ¿Qué tipo domina?                |
-| Host     | ¿Quién controla el mercado?      |
-
----
-
-## 💡 Insights Clave (Ejemplos)
-
-- Barrios con más alojamientos  
-- Ciudades con mayor precio medio  
-- Mayor peso de hosts profesionales  
-- Relación entre reseñas y precio  
-
----
-
-## 🌍 Comparativa Global
-
-### Aportaciones
-
-- Ranking de ciudades  
-- Mercados más competitivos  
-- Diferencias estructurales  
-
----
-
-## 🧩 Conclusiones de Negocio
-
-### Aprendizajes
-
-- Cada ciudad tiene dinámicas distintas  
-- La profesionalización varía  
-- El tipo de alojamiento impacta en el precio  
-
-### Decisiones Posibles
-
-- Ajuste dinámico de precios  
-- Inversión por zonas  
-- Detección de saturación  
-
----
-
-## 🔮 Futuras Mejoras
-
-- Series temporales  
-- Datos de ocupación real  
-- Análisis de rentabilidad  
-- Datos turísticos externos  
