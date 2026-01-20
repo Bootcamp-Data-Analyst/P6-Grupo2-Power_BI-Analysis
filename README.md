@@ -120,18 +120,58 @@ Cada archivo presentaba **ligeras diferencias en estructura y formato**.
 Limpieza y estandarización de columnas:
 
 
-| Columna                | Transformación                                             |
-|------------------------|------------------------------------------------------------|
-| `id`                   | Eliminación de nulos y conversión a numérico               |
-| `host_id`              | Eliminación de nulos y conversión a numérico               |
-| `latitude / longitude` | Conversión a decimal y ajuste regional                     |
-| `price`                | Limpieza de símbolo y normalización de formato regional    |
-| `usd`                  | Conversión de `price` (moneda local) a dólares estadounidenses |
-| `minimum_nights`       | Eliminada                                                  |
-| `last_review`          | Eliminada                                                  |
-| `reviews_per_month`    | Eliminada                                                  |
-| `neighborhood_group`   | Usada solo cuando existe                                   |
-| `city`                 | Columna añadida manualmente                                |
+## 🔄 Transformaciones de Columnas (ETL)
+
+Durante el proceso de limpieza y estandarización de los datos se aplicaron las siguientes transformaciones:
+
+| Columna | Descripción | Transformación |
+|--------|------------|----------------|
+| `id` | Identificador de la propiedad (Número entero) | Eliminación de nulos y conversión a numérico |
+| `name` | Nombre de la propiedad (Texto) | Sin transformación |
+| `host_id` | Identificador del propietario (Número entero) | Eliminación de nulos y conversión a numérico |
+| `host_name` | Nombre del propietario (Texto) | Sin transformación |
+| `neighborhood_group` | Agrupación de barrios | Usada solo cuando existe |
+| `neighborhood` | Barrio donde se encuentra la propiedad | Usada solo cuando existe |
+| `latitude` | Latitud geográfica | Conversión a decimal y ajuste regional |
+| `longitude` | Longitud geográfica | Conversión a decimal y ajuste regional |
+| `room_type` | Tipo de alojamiento | Sin transformación |
+| `price` | Precio en moneda local | Limpieza de símbolos y normalización regional |
+| `usd` | Precio en dólares (USD) | Conversión de `price` a USD |
+| `minimum_nights` | Mínimo de noches | Eliminada |
+| `last_review` | Fecha de última reseña | Eliminada |
+| `reviews_per_month` | Reseñas por mes | Eliminada |
+| `number_of_reviews` | Cantidad de reseñas por propiedad | Conversión a numérico |
+| `host_list_count` | Cantidad de propiedades por anfitrión | Conversión a entero |
+| `availability_365` | Días disponibles por propiedad al año | Faltante en el caso de Tokio |
+| `city` | Ciudad del alojamiento | Columna añadida manualmente |
+
+---
+
+## 🧮 Columnas Calculadas
+
+### 👤 Tipo de Host
+
+Clasificación según número de propiedades del anfitrión:
+
+DAX
+Tipo Host =
+IF(
+    [host_list_count] >= 2,
+    "Profesional",
+    "Particular"
+)
+
+📆 Tipo de Disponibilidad
+
+Tipo Disponibilidad =
+IF(
+    [availability_365] <= 100, "Disponibilidad baja",
+    IF(
+        [availability_365] > 180, "Disponibilidad alta",
+        "Disponibilidad media"
+    )
+)
+
 
 
 Configuración regional ajustada para correcta lectura de decimales y mapas.
